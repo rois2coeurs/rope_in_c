@@ -1,9 +1,11 @@
-#include "../../Users/Valentin/CLionProjects/untitled/rope.h"
+#include "rope.h"
 #include <time.h>
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
 #include <assert.h>
+
+typedef struct Rope Rope;
 
 // gcc bench.c -O3  -Wall -Wextra &&  ./a.out | tee bench.csv
 
