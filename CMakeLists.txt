@@ -15,6 +15,3 @@ add_executable(tests
         test/Unity/unity.c
         test/Unity/unity.h
         test/Unity/unity_internals.h)
-# Config pour les tests
-enable_testing()
-add_test(NAME rope_in_c_tests COMMAND tests)
