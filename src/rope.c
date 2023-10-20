@@ -9,28 +9,35 @@ typedef struct Rope Rope;
 const size_t MAX_ROPE_LEN = 6;
 
 void rope_insert_at(Rope *rope, char *str, size_t pos) {
-    if (!rope->len || rope->len == 0) {
-        rope->str = str;
-        rope->len = strlen(str);
-        return;
-    }
-    if (rope->len < pos) {
-        if (!rope->right) { rope->right = rope_new(); }
-        rope_insert_at(rope->right, str, pos - rope->len);
-        return;
-    }
-    if (rope->len > pos) {
-        if (!rope->left) { rope->left = rope_new(); }
-        rope_insert_at(rope->left, str, pos);
-        return;
-    }
+    // TODO: implement
 }
 
-Rope *rope_new() {
+Rope *rope_new(char *str) {
     Rope *rope = malloc(sizeof(Rope));
     rope->len = 0;
     rope->left = NULL;
     rope->right = NULL;
     rope->str = NULL;
+    rope_insert_at(rope, str, 0);
     return rope;
+}
+
+void rope_delete(Rope *rope) {
+    if (rope->left != NULL) {
+        rope_delete(rope->left);
+    }
+    if (rope->right != NULL) {
+        rope_delete(rope->right);
+    }
+    free(rope);
+}
+
+size_t rope_len(Rope *rope) {
+    if (rope->left != NULL) {
+        rope_len(rope->left);
+    }
+    if (rope->right != NULL) {
+        rope_len(rope->right);
+    }
+    return rope->len;
 }

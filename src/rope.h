@@ -15,12 +15,12 @@ struct Rope {
 
 typedef struct Rope Rope;
 
-Rope *rope_new();
+Rope *rope_new(char *str);
 
 void rope_insert_at(Rope *rope, char *str, size_t pos);
 
 size_t rope_len(Rope *rope);
 
-void rope_delete();
+void rope_delete(Rope *rope);
 
 #endif
