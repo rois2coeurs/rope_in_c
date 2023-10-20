@@ -16,7 +16,7 @@ jobs:
     - name: Set up CMake
       uses: lukka/get-cmake@latest
       with:
-        cmake-version: 3.x
+        cmakeVersion: 3.x
 
     - name: Build
       run: |
@@ -37,7 +37,7 @@ jobs:
       continue-on-error: true
 
     - name: Artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@latest
       with:
         name: build
         path: ./build
