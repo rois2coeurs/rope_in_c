@@ -18,6 +18,9 @@ jobs:
       with:
         cmakeVersion: 3.x
 
+    - name: Install Valgrind
+      uses: steinwurf/valgrind-action@v5.1.0
+
     - name: Build
       run: |
         mkdir build
@@ -30,7 +33,7 @@ jobs:
       run: ./tests
 
     - name: Run Valgrind
-      uses: steinwurf/valgrind-action@5.1.0
+      uses: steinwurf/valgrind-action@v1
       continue-on-error: true
       with:
         program: ./build/tests
