@@ -32,11 +32,15 @@ jobs:
       working-directory: ./build
       run: ./tests
 
-    - name: Run Valgrind
+    - name: Run Valgrind on Tests
       working-directory: ./build
       run: |
         valgrind --leak-check=full --show-leak-kinds=all ./tests
-      continue-on-error: true
+
+    - name: Run Valgrind on bench
+      working-directory: ./build
+      run: |
+        valgrind --leak-check=full --show-leak-kinds=all ./bench
 
     - name: Artifact
       uses: actions/upload-artifact@v3
