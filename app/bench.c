@@ -1,4 +1,4 @@
-#include "rope.h"
+#include "../src/rope.h"
 #include <time.h>
 #include <stdlib.h>
 #include <string.h>
