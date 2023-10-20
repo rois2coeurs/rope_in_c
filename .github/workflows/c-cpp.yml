@@ -24,6 +24,7 @@ jobs:
         cd build
         cmake ..
         make
+        apt-get update -y && apt-get install -y valgrind
 
     - name: Run Tests
       working-directory: ./build
