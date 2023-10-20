@@ -30,7 +30,7 @@ jobs:
       run: ./tests
 
     - name: Run Valgrind
-      uses: steinwurf/valgrind-action@v1
+      uses: steinwurf/valgrind-action@5.1.0
       continue-on-error: true
       with:
         program: ./build/tests
