@@ -19,7 +19,7 @@ jobs:
         cmakeVersion: 3.x
 
     - name: Install Valgrind
-      uses: steinwurf/valgrind-action@v5.1.0
+      run: sudo apt install valgrind
 
     - name: Build
       run: |
@@ -33,10 +33,10 @@ jobs:
       run: ./tests
 
     - name: Run Valgrind
-      uses: steinwurf/valgrind-action@v1
+      working-directory: ./build
+      run: |
+        valgrind --leak-check=full --show-leak-kinds=all ./tests
       continue-on-error: true
-      with:
-        program: ./build/tests
 
     - name: Artifact
       uses: actions/upload-artifact@v3
