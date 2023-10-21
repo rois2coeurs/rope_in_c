@@ -3,6 +3,7 @@
 //
 
 #include <string.h>
+#include <stdio.h>
 #include "rope.h"
 
 typedef struct Rope Rope;
@@ -66,7 +67,17 @@ void str_break_mid(char *str, char *left, char *right, size_t pos) {
 }
 
 void str_insert_at(char *str, char *substr, size_t pos) {
-    char *tmp = malloc(strlen(str) + strlen(substr) + 1);
+    int original_len = strlen(str);
+    int substr_len = strlen(substr);
+    int new_len = original_len + substr_len + 1;
+
+
+    if (pos > original_len) {
+        printf("Error: pos > original_len\n");
+        return;
+    }
+
+    char *tmp = malloc(strlen(str) + strlen(substr) + 2);
     strncpy(tmp, str, pos);
     tmp[pos] = '\0';
     strcat(tmp, substr);
