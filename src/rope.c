@@ -37,12 +37,13 @@ void rope_insert_at(Rope *rope, char *str, size_t pos) {
             if (strlen(str) <= MAX_ROPE_LEN) {
                 rope->str = str;
             } else {
-                char *left = malloc(strlen(str) + 1);
-                char *right = malloc(strlen(str) + 1);
+                char *left = malloc(strlen(str) / 2 + 1);
+                char *right = malloc(strlen(str) / 2 + strlen(str) % 2 + 1);
                 str_break_mid(str, left, right, strlen(str) / 2);
+                rope->len += strlen(str)/2;
+                free(str);
                 rope->left = rope_new(left);
                 rope->right = rope_new(right);
-                rope->len += strlen(str)/2;
             }
         }
     }
@@ -79,7 +80,7 @@ void str_insert_at(char *str, char *substr, size_t pos) {
         return;
     }
 
-    char *tmp = malloc(strlen(str) + strlen(substr) + 2);
+    char *tmp = malloc(strlen(str) + strlen(substr) + 1);
     strncpy(tmp, str, pos);
     tmp[pos] = '\0';
     strcat(tmp, substr);
@@ -105,15 +106,16 @@ void rope_delete(Rope *rope) {
     if (rope->right != NULL) {
         rope_delete(rope->right);
     }
+    if (rope->str != NULL) {
+        free(rope->str);
+    }
     free(rope);
 }
 
 size_t rope_len(Rope *rope) {
-    if (rope->left != NULL) {
-        rope_len(rope->left);
-    }
     if (rope->right != NULL) {
-        rope_len(rope->right);
+        return rope->len + rope_len(rope->right);
+    } else {
+        return rope->len + strlen(rope->str);
     }
-    return rope->len;
 }
