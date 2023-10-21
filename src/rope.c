@@ -10,6 +10,9 @@ typedef struct Rope Rope;
 const size_t MAX_ROPE_LEN = 6;
 
 void rope_insert_at(Rope *rope, char *str, size_t pos) {
+    if (strlen(str) <= 0) {
+        return;
+    }
     if (rope->len == 0) {
         if (rope->str != NULL) {
             if (rope->len + strlen(str) <= MAX_ROPE_LEN) {
@@ -32,8 +35,7 @@ void rope_insert_at(Rope *rope, char *str, size_t pos) {
             }
         } else {
             if (strlen(str) <= MAX_ROPE_LEN) {
-                rope->str = malloc(strlen(str) + 1);
-                strcpy(rope->str, str);
+                rope->str = str;
             } else {
                 char *left = malloc(strlen(str) + 1);
                 char *right = malloc(strlen(str) + 1);

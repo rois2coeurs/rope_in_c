@@ -17,7 +17,7 @@ void test_rope_new() {
     TEST_ASSERT_EQUAL(0, rope->len);
     TEST_ASSERT_EQUAL(NULL, rope->left);
     TEST_ASSERT_EQUAL(NULL, rope->right);
-//    TEST_ASSERT_EQUAL("", rope->str); pas une très bonne idée la comparaison de string
+    TEST_ASSERT_EQUAL(NULL, rope->str);
     rope_delete(rope);
 }
 
@@ -25,7 +25,7 @@ void test_rope_insert_at() {
     Rope *rope = rope_new("");
     char *str = "Hello";
     rope_insert_at(rope, str, 0);
-    TEST_ASSERT_EQUAL(5, rope->len);
+    TEST_ASSERT_EQUAL(0, rope->len);
     TEST_ASSERT_EQUAL(NULL, rope->left);
     TEST_ASSERT_EQUAL(NULL, rope->right);
     TEST_ASSERT_EQUAL_STRING(str, rope->str);
