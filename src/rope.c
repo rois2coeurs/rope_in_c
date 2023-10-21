@@ -25,8 +25,8 @@ void rope_insert_at(Rope *rope, char *str, size_t pos) {
                 rope->right = rope_new(right);
                 rope->len += strlen(tmp_str)/2;
                 free(tmp_str);
-//                free(left);
-//                free(right);
+                free(left);
+                free(right);
                 rope->str = NULL;
             }
         } else {
