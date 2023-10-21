@@ -23,4 +23,8 @@ size_t rope_len(Rope *rope);
 
 void rope_delete(Rope *rope);
 
+void str_insert_at(char *str, char *substr, size_t pos);
+
+void str_break_mid(char *str, char *left, char *right, size_t pos);
+
 #endif
