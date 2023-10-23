@@ -15,9 +15,8 @@ void rope_insert_at(Rope *rope, char *str, size_t pos) {
     }
     if (rope->len == 0) {
         if (rope->str != NULL) {
-            if (rope->len + strlen(str) <= MAX_ROPE_LEN) {
+            if (strlen(rope->str) + strlen(str) <= MAX_ROPE_LEN) {
                 str_insert_at(rope->str, str, pos);
-                rope->len += strlen(str);
             } else {
                 char *tmp_str = malloc(strlen(rope->str) + strlen(str) + 1);
                 strcpy(tmp_str, rope->str);
@@ -74,13 +73,12 @@ void str_insert_at(char *str, char *substr, size_t pos) {
     int substr_len = strlen(substr);
     int new_len = original_len + substr_len + 1;
 
-
     if (pos > original_len) {
         printf("Error: pos > original_len\n");
         return;
     }
 
-    char *tmp = malloc(strlen(str) + strlen(substr) + 1);
+    char *tmp = malloc(new_len);
     strncpy(tmp, str, pos);
     tmp[pos] = '\0';
     strcat(tmp, substr);

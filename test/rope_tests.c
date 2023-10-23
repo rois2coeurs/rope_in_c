@@ -7,11 +7,6 @@
 
 typedef struct Rope Rope;
 
-void setUp() {}
-
-void tearDown() {
-}
-
 void test_rope_insert_at() {
     Rope *rope = rope_new("");
     char *str = malloc(6);
@@ -42,6 +37,21 @@ void test_rope_insert_at_2() {
     rope_delete(rope);
 }
 
+void test_rope_insert_at_3() {
+    Rope *rope = rope_new("");
+    char *str = malloc(8);
+    strcpy(str, "HelloIm");
+    rope_insert_at(rope, str, 0);
+    TEST_ASSERT_EQUAL(3, rope->len);
+    TEST_ASSERT_EQUAL_STRING("Hel", rope->left->str);
+    TEST_ASSERT_EQUAL_STRING("loIm", rope->right->str);
+    TEST_ASSERT_EQUAL_STRING(NULL, rope->str);
+    strcpy(str, "Middle");
+    rope_insert_at(rope, str, 4);
+    TEST_ASSERT_EQUAL(11, rope->len);
+    rope_delete(rope);
+}
+
 void test_rope_new() {
     Rope *rope = rope_new("");
     TEST_ASSERT_EQUAL(0, rope->len);
@@ -51,10 +61,11 @@ void test_rope_new() {
     rope_delete(rope);
 }
 
-int main() {
+int start_rope_tests() {
     UNITY_BEGIN();
     RUN_TEST(test_rope_new);
     RUN_TEST(test_rope_insert_at);
     RUN_TEST(test_rope_insert_at_2);
+   // RUN_TEST(test_rope_insert_at_3);
     return UNITY_END();
 }
