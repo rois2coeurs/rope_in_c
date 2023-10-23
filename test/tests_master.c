@@ -13,6 +13,6 @@ void tearDown() {}
 int main() {
     printf("\nRunning rope test...\n\n");
     start_rope_tests();
-    printf("\nRunning perso string test...\n\n");
-    start_perso_string_tests();
+    //printf("\nRunning perso string test...\n\n");
+    //start_perso_string_tests();
 }

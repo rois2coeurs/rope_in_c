@@ -24,6 +24,7 @@ void test_rope_insert_at_2() {
     char *str = malloc(16);
     strcpy(str, "HelloImValentin");
     rope_insert_at(rope, str, 0);
+    TEST_ASSERT_EQUAL(15, rope_len(rope));
     TEST_ASSERT_EQUAL(7, rope->len);
     TEST_ASSERT_EQUAL(3, rope->left->len);
     TEST_ASSERT_EQUAL(4, rope->right->len);
@@ -46,10 +47,13 @@ void test_rope_insert_at_3() {
     TEST_ASSERT_EQUAL_STRING("Hel", rope->left->str);
     TEST_ASSERT_EQUAL_STRING("loIm", rope->right->str);
     TEST_ASSERT_EQUAL_STRING(NULL, rope->str);
-    strcpy(str, "Middle");
-    rope_insert_at(rope, str, 4);
-    TEST_ASSERT_EQUAL(11, rope->len);
+    TEST_ASSERT_EQUAL(7, rope_len(rope));
+    rope_insert_at(rope, "Middle", 4);
+    TEST_ASSERT_EQUAL(13, rope_len(rope));
+    TEST_ASSERT_EQUAL(3, rope->len);
+    TEST_ASSERT_EQUAL(5, rope->right->len);
     rope_delete(rope);
+    free(str);
 }
 
 void test_rope_new() {
@@ -66,6 +70,6 @@ int start_rope_tests() {
     RUN_TEST(test_rope_new);
     RUN_TEST(test_rope_insert_at);
     RUN_TEST(test_rope_insert_at_2);
-   // RUN_TEST(test_rope_insert_at_3);
+    RUN_TEST(test_rope_insert_at_3);
     return UNITY_END();
 }

@@ -32,4 +32,5 @@ void perso_string_insert_at(PersoString *perso_string, char *str, size_t pos) {
     perso_string->str = realloc(perso_string->str, strlen(tmp_str) + 1);
     assert(perso_string->str != NULL);
     strcpy(perso_string->str, tmp_str);
+    free(tmp_str);
 }
