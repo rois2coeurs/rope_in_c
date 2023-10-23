@@ -10,11 +10,11 @@
 
 typedef struct PersoString PersoString;
 
-PersoString *perso_string_new(char value, char *ptr, size_t len) {
+PersoString *perso_string_new(char *str) {
     PersoString *perso_string = malloc(sizeof(PersoString));
-    perso_string->len = len;
-    perso_string->value = value;
-    perso_string->ptr = ptr;
+    perso_string->len = strlen(str);
+    perso_string->str = malloc(perso_string->len + 1);
+    strcpy(perso_string->str, str);
     return perso_string;
 }
 
