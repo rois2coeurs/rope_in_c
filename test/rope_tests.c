@@ -112,10 +112,10 @@ void test_rope_new() {
 
 int start_rope_tests() {
     UNITY_BEGIN();
-//    RUN_TEST(test_rope_new);
-//    RUN_TEST(test_rope_insert_at);
-//    RUN_TEST(test_rope_insert_at_2);
-//    RUN_TEST(test_rope_insert_at_3);
+    RUN_TEST(test_rope_new);
+    RUN_TEST(test_rope_insert_at);
+    RUN_TEST(test_rope_insert_at_2);
+    RUN_TEST(test_rope_insert_at_3);
     RUN_TEST(test_rope_multiple_insertions);
     return UNITY_END();
 }
